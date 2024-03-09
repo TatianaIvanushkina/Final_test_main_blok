@@ -9,6 +9,9 @@
 // [“Russia”, “Denmark”, “Kazan”] → []
 
 using System.Runtime.ExceptionServices;
+int sizeArr = 5;
+int n = 3;
+string[] arrayOne = new string[sizeArr];
 
 void CreateArray(string[] arr) 
 {
@@ -20,8 +23,9 @@ void CreateArray(string[] arr)
 
 void PrintArray(string[] arr)
 {
-    Console.Write("Array One: [");
-    for (int i = 0; i < sizeArr; i++)
+    int arrLen = arr.Length;
+    Console.Write("[");
+    for (int i = 0; i < arrLen; i++)
     {
         Console.Write(arr[i] + "; ");
     }
@@ -33,7 +37,7 @@ int GetSizeArrayTwo(string[] arr)
     int count = 0;
     for (int i = 0; i < sizeArr; i++)
     {
-        if(arr[i].lenght <= n)
+        if(arr[i].Length <= n)
         {
             count = count + 1;  
         }
@@ -41,15 +45,35 @@ int GetSizeArrayTwo(string[] arr)
     return count;
 }
 
-int sizeArr = 5;
-int n = 3;
-string[] arrayOne = new string[sizeArr];
+string[] CreateArrayTwo(string[] arr)
+{
+    string[] arrayTwo = new string[GetSizeArrayTwo(arrayOne)];
+    for (int i = 0, j = 0; i < sizeArr; i++)
+    {
+        if(arr[i].Length <= n)
+        {
+            arrayTwo[j] = arr[i];
+            j = j + 1; 
+        }
+    }
+    return arrayTwo;
+}
+
+
 Console.Write("Enter character set (without spaces), click Enter ");
+Console.WriteLine();
 CreateArray(arrayOne);
 Console.Clear();
+Console.WriteLine ("Array One: ");
 PrintArray(arrayOne);
+Console.WriteLine();
+Console.WriteLine ("Array Two: ");
 if(GetSizeArrayTwo(arrayOne) == 0)
 {
     Console.Write("There are no lines whose length is less than or equal to 3 characters");
 }
-
+else
+{
+    string[] arrayTwo = CreateArrayTwo(arrayOne);
+    PrintArray(arrayTwo);
+}
