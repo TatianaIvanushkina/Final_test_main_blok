@@ -10,15 +10,11 @@
 
 using System.Runtime.ExceptionServices;
 
-int sizeArr = 5;
-string[] arrayOne = new string[sizeArr];
-
 void CreateArray(string[] arr) 
 {
     for (int i = 0; i < sizeArr; i++)
     {
         arr[i] = Console.ReadLine() ?? "";
-
     }
 }
 
@@ -32,7 +28,28 @@ void PrintArray(string[] arr)
     Console.Write("]");
 } 
 
+int GetSizeArrayTwo(string[] arr)
+{
+    int count = 0;
+    for (int i = 0; i < sizeArr; i++)
+    {
+        if(arr[i].lenght <= n)
+        {
+            count = count + 1;  
+        }
+    }
+    return count;
+}
+
+int sizeArr = 5;
+int n = 3;
+string[] arrayOne = new string[sizeArr];
 Console.Write("Enter character set (without spaces), click Enter ");
 CreateArray(arrayOne);
 Console.Clear();
 PrintArray(arrayOne);
+if(GetSizeArrayTwo(arrayOne) == 0)
+{
+    Console.Write("There are no lines whose length is less than or equal to 3 characters");
+}
+
